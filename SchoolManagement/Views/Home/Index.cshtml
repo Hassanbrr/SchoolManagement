@@ -1,0 +1,57 @@
+﻿@using Microsoft.AspNetCore.Mvc.TagHelpers
+@model List<Domain.Models.Classroom>
+<div class="container">
+    
+
+    
+    <table class="table table-bordered table-striped">
+        <thead>
+        <tr>
+            <th>
+                School Management
+            </th>
+            <th>Setting</th>
+
+        </tr>
+        </thead>
+        <tbody>
+       
+        <tr>
+            <td>
+                Classrooms
+            </td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                    <a asp-controller="Classroom" asp-action="Index" class="btn btn-success mx-2" asp-route-id=""><i class="fa-solid fa-list"></i> details</a>
+                </div>
+            </td>
+                
+        </tr>
+        <tr>
+            <td>
+                Students
+            </td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                        <a asp-controller="Classroom" asp-action="Index" class="btn btn-success mx-2" asp-route-id=""><i class="fa-solid fa-list"></i> details</a>
+                </div>
+            </td>
+                
+        </tr> 
+        <tr>
+            <td>
+                Teachers
+            </td>
+            <td>
+                <div class="w-75 btn-group" role="group">
+                    <a asp-controller="Classroom" asp-action="Index" class="btn btn-success mx-2" asp-route-id=""><i class="fa-solid fa-list"></i> details</a>
+                </div>
+            </td>
+                
+        </tr>
+
+        
+        </tbody>
+
+    </table>
+</div>
