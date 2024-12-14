@@ -1,6 +1,7 @@
 ﻿using DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Domain.Models;
+using Microsoft.EntityFrameworkCore.Query;
 
 namespace SchoolManagament.Controllers
 {
@@ -14,7 +15,8 @@ namespace SchoolManagament.Controllers
         }
         public IActionResult Index()
         {
-            List<Classroom> objClassroomsList = _unitOfWork.Classroom.GetAll().ToList();
+
+           var objClassroomsList =  _unitOfWork.Classroom.GetAll().ToList();
            
             return View(objClassroomsList);
         }
@@ -27,6 +29,9 @@ namespace SchoolManagament.Controllers
 
         public IActionResult Create(Classroom obj)
         {
+
+            obj.CreateDate = DateTime.Now;    
+            obj.UpdateDate = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _unitOfWork.Classroom.Add(obj);
@@ -34,8 +39,11 @@ namespace SchoolManagament.Controllers
                 TempData["success"] = "Classroom Created Successfully";
             return  RedirectToAction("index");
             }
-
-            return View();
+            else
+            {
+                return NotFound();
+            }
+          
         } 
         public IActionResult Edit()
         {

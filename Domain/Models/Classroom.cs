@@ -14,14 +14,15 @@ namespace Domain.Models
         [Key]
 
         public int Id { get; set; }
-
+        [Required]
         public string? ClassName { get; set; }
+        [Required]
 
         public int  SchoolId { get; set; }
 
-        public virtual School School { get; set; }
-        public virtual ICollection<Student> Students { get; set; }
-        public virtual ICollection<Teacher> Teachers { get; set; }
+        public virtual School? School { get; set; }
+        public virtual ICollection<Student>? Students { get; set; }
+        public virtual ICollection<Teacher>? Teachers { get; set; }
         public DateTime CreateDate { get; set; }
         public DateTime UpdateDate { get; set; }
 
