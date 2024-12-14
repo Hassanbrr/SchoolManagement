@@ -13,15 +13,11 @@ namespace DataAccess.Repository
     public class ClassroomRepository :Repository<Classroom> , IClassroomRepository
     {
         private ApplicationDbContext _db;
-        public ClassroomRepository( ApplicationDbContext db) : base(db) 
+        public ClassroomRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Save()
-        {
-            _db.SaveChanges();  
-        }
 
         public void Update(Classroom obj)
         {

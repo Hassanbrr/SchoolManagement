@@ -12,11 +12,15 @@
         <input asp-for="ClassName" class="form-control" />
         <span asp-validation-for="ClassName" class="text-danger"></span>
     </div> 
+    <div class="mb-3">
+        <label asp-for="SchoolId"></label>
+        <input type="number" asp-for="SchoolId" class="form-control" />
+        <span asp-validation-for="SchoolId" class="text-danger"></span>
+    </div> 
    
     <div class="row">
         <div class="col-6">
             <button type="submit" class="btn btn-dark form-control"  >Create</button>
-
         </div>
         <div class="col-6">
             <a asp-controller="Classroom" asp-action="Index" class="btn btn-danger form-control" >
