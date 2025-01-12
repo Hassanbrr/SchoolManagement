@@ -1,38 +1,37 @@
 ﻿using DataAccess.Repository.IRepository;
-using Microsoft.AspNetCore.Mvc;
 using Domain.Models;
-using Microsoft.EntityFrameworkCore.Query;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SchoolManagement.Controllers
 {
-    public class ClassroomController : Controller
+    public class StudentController : Controller
     {
-        private readonly IUnitOfWork _unitOfWork; 
-        public ClassroomController(IUnitOfWork unitOfWork)
+        private readonly IUnitOfWork _unitOfWork;
+        public StudentController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
-        { 
-            var objClassroomsList = _unitOfWork.Classroom.GetAll().ToList(); 
-            return View(objClassroomsList);
+        {
+            var students = _unitOfWork.Student.GetAll().ToList();
+            return View(students);
         }
         public IActionResult Create()
         {
             return View();
-        } 
+        }
         [HttpPost]
 
-        public IActionResult Create(Classroom obj)
+        public IActionResult Create(Student obj)
         {
-                                                        
+
             obj.CreateDate = DateTime.Now;
             obj.UpdateDate = DateTime.Now;
             if (ModelState.IsValid)
             {
-                _unitOfWork.Classroom.Add(obj);
+                _unitOfWork.Student.Add(obj);
                 _unitOfWork.Save();
-                TempData["success"] = "Classroom Created Successfully";
+                TempData["success"] = "Student Created Successfully";
                 return RedirectToAction("index");
             }
             else
@@ -48,12 +47,12 @@ namespace SchoolManagement.Controllers
                 return NotFound();
             }
 
-            var ClassroomFromDb = _unitOfWork.Classroom.GetById(u => u.Id == id);
-            if (ClassroomFromDb == null)
+            var StudentFromDb = _unitOfWork.Student.GetById(u => u.Id == id);
+            if (StudentFromDb == null)
             {
                 return NotFound();
             }
-            return View(ClassroomFromDb);
+            return View(StudentFromDb);
         }
         [HttpPost]
         public IActionResult Edit(Classroom obj)
@@ -85,10 +84,7 @@ namespace SchoolManagement.Controllers
             TempData["success"] = "Category Deleted Successfully";
 
             return RedirectToAction("Index");
-          
+
         }
-
-
-        
     }
 }
